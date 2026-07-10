@@ -8,9 +8,29 @@ pipeline {
     }
 
     stages {
+
+        stage('Sahil.Bhuva - Unit Test') {
+            steps {
+                sh 'pip install -r requirements.txt --break-system-packages -q'
+                sh 'python3 -m pytest test_app.py -v'
+            }
+        }
+
+        stage('Sahil.Bhuva - Security Scan Code') {
+            steps {
+                sh 'trivy fs . --severity HIGH,CRITICAL --exit-code 0'
+            }
+        }
+
         stage('Sahil.Bhuva - Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG -t $IMAGE_NAME:latest .'
+            }
+        }
+
+        stage('Sahil.Bhuva - Security Scan Image') {
+            steps {
+                sh 'trivy image $IMAGE_NAME:latest --severity HIGH,CRITICAL --exit-code 0'
             }
         }
 
@@ -26,6 +46,7 @@ pipeline {
                 sh 'docker push $IMAGE_NAME:latest'
             }
         }
+
     }
 
     post {
