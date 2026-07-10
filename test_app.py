@@ -1,6 +1,11 @@
 import pytest
-import importlib
-module = importlib.import_module("Sahil.Bhuva")
+import sys
+import importlib.util
+
+# Load the app file directly by path (handles dot in filename)
+spec = importlib.util.spec_from_file_location("app", "Sahil.Bhuva.py")
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
 app = module.app
 
 @pytest.fixture
