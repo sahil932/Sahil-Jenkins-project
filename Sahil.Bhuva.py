@@ -20,7 +20,7 @@ TEAM_A = {
 
 TEAM_B = {
     "name": "Argentina",
-    "flag": "AR",
+    "flag": "SA",
     "player": "Messi",
     "img": "",              # optional: paste an image URL you have rights to use
     "color": "#38bdf8",
