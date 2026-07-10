@@ -11,7 +11,7 @@ pipeline {
 
         stage('Sahil.Bhuva - Unit Test') {
             steps {
-                sh 'pip install -r requirements.txt --break-system-packages -q'
+                sh 'pip3 install -r requirements.txt --break-system-packages -q'
                 sh 'python3 -m pytest test_app.py -v'
             }
         }
