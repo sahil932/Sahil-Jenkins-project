@@ -1,5 +1,7 @@
 import pytest
-from Sahil.Bhuva import app
+import importlib
+module = importlib.import_module("Sahil.Bhuva")
+app = module.app
 
 @pytest.fixture
 def client():
