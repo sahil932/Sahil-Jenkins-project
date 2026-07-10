@@ -47,6 +47,14 @@ pipeline {
             }
         }
 
+        stage('Sahil.Bhuva - Deploy App') {
+            steps {
+                sh 'docker stop worldcup-app || true'
+                sh 'docker rm worldcup-app || true'
+                sh 'docker run -d --name worldcup-app -p 5000:5000 $IMAGE_NAME:latest'
+            }
+        }
+
     }
 
     post {
