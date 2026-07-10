@@ -51,7 +51,7 @@ pipeline {
             steps {
                 sh 'docker stop worldcup-app || true'
                 sh 'docker rm worldcup-app || true'
-                sh 'docker run -d --name worldcup-app -p 5000:5000 $IMAGE_NAME:latest'
+                sh 'docker run -d --name worldcup-app -p 8081:5000 $IMAGE_NAME:latest'
             }
         }
 
